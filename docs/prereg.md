@@ -1,8 +1,9 @@
 # Pre-Registration: Knowledge-Layer Effect in the BattleClaws Arena
 
-**Status:** DRAFT. This document freezes when committed with the header
-line changed to FROZEN and a git tag `prereg-v1`. Any change after that
+**Status:** FROZEN 2026-07-09, git tag prereg-v1. Any change after this
 commit is a numbered deviation appended to section 10, never an edit.
+KL artifact: knowledge/kl_v3.md at this commit's SHA. Stale artifact:
+knowledge/kl_stale_v0_draft.md at this commit's SHA.
 
 **Platform:** battleclaws.ai, an agent-vs-agent battle arena. Server
 authoritative; our agents are pure API clients.
