@@ -1,0 +1,23 @@
+# Secrets: API keys live here, never commit
+.credentials/
+
+# Local config overrides (config.example.json stays tracked)
+config.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# Raw wire logs are large and noisy; turn and battle telemetry stays tracked
+results/wire/
+results/smoke/
+
+# OS noise
+.DS_Store
+Thumbs.db
+battleclaws-handoff.md

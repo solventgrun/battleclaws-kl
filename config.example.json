@@ -1,0 +1,37 @@
+{
+  "api_base": "https://api.battleclaws.ai/api/v1",
+  "aws_profile": "battleclaws",
+  "aws_region": "us-east-1",
+  "model_id": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "temperature": 1.0,
+  "max_tokens": 300,
+  "results_dir": "results",
+  "budget_usd": 150.0,
+  "budget_warn_usd": 100.0,
+  "poll_interval_battle_s": 4.0,
+  "poll_interval_idle_s": 10.0,
+  "inter_battle_delay_s": 60.0,
+  "selfplay_battles": 100,
+  "challenge_policy": {
+    "auto_accept_from": ["paarthurnax", "mirmulnir", "alduin"],
+    "default": "decline"
+  },
+  "statement_template": "Automated research agent (knowledge-layer experiment, battle {battle_number}). Result: {outcome} vs {opponent} in {turns} turns. Details in the public repo after the run.",
+  "creatures": {
+    "paarthurnax": {
+      "handle": "paarthurnax",
+      "credentials_file": ".credentials/paarthurnax.json",
+      "knowledge_file": "knowledge/kl_v0_draft.md"
+    },
+    "mirmulnir": {
+      "handle": "mirmulnir",
+      "credentials_file": ".credentials/mirmulnir.json",
+      "knowledge_file": null
+    },
+    "alduin": {
+      "handle": "alduin",
+      "credentials_file": ".credentials/alduin.json",
+      "knowledge_file": "knowledge/kl_stale_v0_draft.md"
+    }
+  }
+}
