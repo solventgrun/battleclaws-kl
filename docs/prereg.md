@@ -42,6 +42,15 @@ Nothing in this section is confirmatory.
 - 17 organic matchmaking battles by the third creature (alduin, stale
   arm) confirmed the queue produces opponents in an idle arena within
   about 90 seconds. Record 11W 6L, descriptive only.
+- A 10-battle validation batch with KL v2 (after the race fix) scored
+  4W 5L in the 9 cleanly attributable battles: parity, not an edge.
+  Adherence audit: the opening rule executed 10 of 10, but the response
+  table was followed on only about a third of mid-battle turns. KL v3
+  adds a binding usage contract (table is policy, four numbered
+  exceptions, rule cited in the reasoning field) and is the freeze
+  artifact. We disclose plainly: Phase A gave no empirical demonstration
+  that the KL beats the control; the confirmatory run is a genuine test,
+  not a formality.
 - One creature-level fact: all three creatures were registered with the
   same DNA seed and received byte-identical base stats (HP 383, ATK
   294, DEF 242, SPD 284, WIT 319, STA 455, archetype FELINE, element
@@ -53,7 +62,7 @@ Nothing in this section is confirmatory.
 
 | Arm | Creature | Knowledge file | Content |
 |-----|----------|----------------|---------|
-| KL | paarthurnax | knowledge/kl_v2.md (SHA pinned at freeze) | Curated strategy: verified mechanics, measured opponent priors, response table, energy policy |
+| KL | paarthurnax | knowledge/kl_v3.md (SHA pinned at freeze) | Curated strategy: verified mechanics, measured opponent priors, binding response table, energy policy |
 | Control | mirmulnir | none | Identical prompt scaffold with no knowledge block |
 | Stale | alduin | knowledge/kl_stale_v0_draft.md (SHA pinned at freeze) | Deliberately wrong strategy: inverted beats relationships, always-max-spend advice, repeat-after-win folk theory |
 
@@ -67,15 +76,20 @@ the user message.
 ## 3. Hypotheses (directional, frozen before any confirmatory battle)
 
 - H1 (primary): the KL arm beats the control arm in more than half of
-  valid head-to-head battles. Prediction: win rate above 0.5; we expect
-  approximately 0.60 to 0.70 based on Phase A reads, but the
-  pre-registered claim is sign-level.
+  valid head-to-head battles. Prediction: win rate above 0.5. Honest
+  prior: Phase A validation (n = 9) was consistent with parity, so this
+  is a genuinely uncertain sign-level prediction, not a formality. The
+  mechanism, if the effect exists, is the exploitable regularities the
+  KL encodes (scripted openings, no-repeat, counter-to-last behavior).
 - H2 (stale): the stale arm's win rate against the control is at or
   below 0.5. Bad knowledge should not help, and following it should
   hurt (tenancy-bench adversarial tier analog).
-- H3 (mediator, no outcome claim): the KL arm's moves will match its
-  knowledge file's response table in a majority of turns, demonstrating
-  the treatment was actually consumed. Reported descriptively.
+- H3 (mediator, no outcome claim): in a majority of turns from turn 3
+  onward, the KL arm's move matches the knowledge file's play table row
+  for its own previous action OR one of the file's four numbered
+  exceptions applies (cooldown fallback, being-read deviation, kill
+  window, frequency skew), scored mechanically from telemetry.
+  Demonstrates the treatment was consumed. Reported descriptively.
 
 ## 4. Primary metric and analysis
 
