@@ -195,21 +195,37 @@ def fallback_move(state: dict) -> dict:
 
 
 def validate_move(parsed: Any, state: dict) -> Optional[str]:
-    """Return an error string if the parsed move is invalid, else None."""
+    """Return an error string if the parsed move needs a model retry.
+
+    Only ability problems (unknown id, on cooldown) are retryable. Energy
+    bets are never retried: clamp_energy_spend adjusts them instead, which
+    is arm-neutral and avoids burning model calls on affordable mistakes.
+    """
     if not isinstance(parsed, dict):
         return "reply was not a JSON object"
     ability = parsed.get("ability_id")
     legal = legal_ability_ids(state)
     if ability not in legal:
         return f"ability_id {ability!r} not in legal list {legal}"
-    energy = parsed.get("energy_spend")
-    if not isinstance(energy, int) or isinstance(energy, bool) \
-            or energy not in LEGAL_ENERGY:
-        return f"energy_spend {energy!r} not one of {list(LEGAL_ENERGY)}"
-    available = state.get("your_energy")
-    if isinstance(available, (int, float)) and energy > available:
-        return f"energy_spend {energy} exceeds current energy {available}"
     return None
+
+
+def clamp_energy_spend(requested: Any, current_energy: Any) -> tuple:
+    """Clamp a requested energy bet to the largest affordable legal tier.
+
+    Returns (energy_spend, clamped): energy_spend is the largest value in
+    LEGAL_ENERGY that is <= min(requested, current_energy). A request that
+    is not a real number clamps to 0. clamped is True when the result
+    differs from the request.
+    """
+    if isinstance(requested, bool) or not isinstance(requested, (int, float)):
+        return 0, True
+    ceiling = requested
+    if isinstance(current_energy, (int, float)) \
+            and not isinstance(current_energy, bool):
+        ceiling = min(ceiling, current_energy)
+    spend = max((t for t in LEGAL_ENERGY if t <= ceiling), default=0)
+    return spend, spend != requested
 
 
 @dataclass
@@ -220,6 +236,7 @@ class Decision:
     energy_spend: int
     reasoning: str
     fallback: bool = False
+    clamped: bool = False
     attempts: int = 0
     input_tokens: int = 0
     output_tokens: int = 0
@@ -272,9 +289,12 @@ class Brain:
     def decide(self, state: dict, knowledge_text: Optional[str] = None) -> Decision:
         """Get a validated move for the given battle state.
 
-        Calls the model, parses and validates the JSON reply. On failure it
-        retries once with the validation error appended; on a second failure
-        it returns the safe fallback move with fallback=True.
+        Calls the model, parses and validates the JSON reply. Illegal or
+        cooldown abilities retry once with the validation error appended;
+        on a second failure it returns the safe fallback move with
+        fallback=True. Unaffordable or off-tier energy bets never retry:
+        they are clamped to the largest affordable legal tier (arm-neutral,
+        applied identically to both arms) with clamped=True recorded.
         """
         decision = Decision(ability_id="", energy_spend=0, reasoning="",
                             knowledge_injected=bool(knowledge_text))
@@ -305,7 +325,14 @@ class Brain:
                      if parsed is None else validate_move(parsed, state))
             if error is None:
                 decision.ability_id = parsed["ability_id"]
-                decision.energy_spend = parsed["energy_spend"]
+                energy, clamped = clamp_energy_spend(
+                    parsed.get("energy_spend"), state.get("your_energy"))
+                if clamped:
+                    log.info("Clamped energy bet %r to %d (current energy %s)",
+                             parsed.get("energy_spend"), energy,
+                             state.get("your_energy"))
+                decision.clamped = clamped
+                decision.energy_spend = energy
                 decision.reasoning = str(
                     parsed.get("reasoning", ""))[:REASONING_MAX_CHARS]
                 return decision

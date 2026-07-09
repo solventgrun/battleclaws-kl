@@ -107,6 +107,7 @@ class Telemetry:
             "model_response_raw": decision.raw_responses,
             "parsed_move": decision.as_move(),
             "fallback": decision.fallback,
+            "clamped": decision.clamped,
             "parse_errors": decision.parse_errors,
             "attempts": decision.attempts,
             "tokens_in": decision.input_tokens,

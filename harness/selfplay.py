@@ -8,7 +8,9 @@ and resumes idempotently by counting completed battles between the two
 arms in results/battles.jsonl.
 
 Stop conditions: N battles reached, SIGINT/SIGTERM, or a stop file at
-<results_dir>/STOP.
+<results_dir>/STOP. The first SIGINT/SIGTERM (or a drain file at
+<results_dir>/DRAIN) drains: the in-progress battle completes and no new
+battle starts. A second signal stops immediately.
 
 Usage:
     python -m harness.selfplay --arms paarthurnax mirmulnir --battles 100
@@ -38,13 +40,16 @@ class SelfPlayOrchestrator:
     """Paces N challenge battles between two agent arms."""
 
     def __init__(self, config, telemetry: Telemetry, arm_names: list,
-                 n_battles: int, stop_event: threading.Event):
+                 n_battles: int, stop_event: threading.Event,
+                 drain_event: threading.Event = None):
         self.config = config
         self.telemetry = telemetry
         self.arm_names = arm_names
         self.n_battles = n_battles
         self.stop_event = stop_event
+        self.drain_event = drain_event or threading.Event()
         self.stop_file = config.results_dir / "STOP"
+        self.drain_file = config.results_dir / "DRAIN"
         self.agents: dict = {}
         self.threads: list = []
 
@@ -58,6 +63,15 @@ class SelfPlayOrchestrator:
             self.stop_event.set()
             return True
         return False
+
+    def _draining(self) -> bool:
+        """True when a drain was requested; the in-progress battle keeps
+        running (agents keep submitting moves) but no new battle starts."""
+        if not self.drain_event.is_set() and self.drain_file.exists():
+            log.warning("Drain file %s found, entering drain mode",
+                        self.drain_file)
+            self.drain_event.set()
+        return self.drain_event.is_set()
 
     def _handles(self) -> list:
         return [self.agents[a].handle for a in self.arm_names]
@@ -88,7 +102,8 @@ class SelfPlayOrchestrator:
     def start_agents(self) -> None:
         for arm in self.arm_names:
             agent = build_agent(arm, self.config, self.telemetry,
-                                mode="selfplay", stop_event=self.stop_event)
+                                mode="selfplay", stop_event=self.stop_event,
+                                drain_event=self.drain_event)
             self.agents[arm] = agent
             thread = threading.Thread(target=agent.run,
                                       name=f"agent-{agent.handle}",
@@ -104,6 +119,10 @@ class SelfPlayOrchestrator:
                  self.n_battles, done)
 
         while done < self.n_battles and not self._should_stop():
+            if self._draining():
+                log.warning("Draining: no new battles will be started "
+                            "(%d/%d complete)", done, self.n_battles)
+                break
             challenger_arm = self.arm_names[done % 2]
             target_arm = self.arm_names[(done + 1) % 2]
             challenger: CreatureAgent = self.agents[challenger_arm]
@@ -171,16 +190,23 @@ def main() -> int:
     telemetry = Telemetry(config.results_dir, config.budget_usd,
                           config.budget_warn_usd)
     stop_event = threading.Event()
+    drain_event = threading.Event()
 
     def _shutdown(signum, frame):
-        log.info("Signal %s received, shutting down gracefully", signum)
-        stop_event.set()
+        if not drain_event.is_set():
+            log.warning("Signal %s received: draining (current battle will "
+                        "finish; signal again to stop immediately)", signum)
+            drain_event.set()
+        else:
+            log.warning("Signal %s received again: stopping immediately",
+                        signum)
+            stop_event.set()
 
     signal.signal(signal.SIGINT, _shutdown)
     signal.signal(signal.SIGTERM, _shutdown)
 
     orchestrator = SelfPlayOrchestrator(config, telemetry, args.arms,
-                                        n_battles, stop_event)
+                                        n_battles, stop_event, drain_event)
     return orchestrator.run()
 
 

@@ -21,3 +21,5 @@ results/smoke/
 .DS_Store
 Thumbs.db
 battleclaws-handoff.md
+results-server/
+results/

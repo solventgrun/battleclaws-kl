@@ -5,6 +5,12 @@ The loop polls /home, follows what_to_do_next semantics, submits moves via
 brain.decide, answers challenges per policy, posts a post-battle statement,
 and auto-requeues in organic mode. All transitions are logged.
 
+TurnRaceGuard recovers from the simultaneous-submit turn resolution race
+(both move POSTs answered with the waiting shape and the turn never
+resolves). Drain semantics: the first SIGINT/SIGTERM, or a drain file at
+<results_dir>/DRAIN, finishes the current battle then exits without taking
+new challenges or requeueing; a second signal stops immediately.
+
 Run standalone (organic arena mode):
     python -m harness.agent --creature paarthurnax --mode organic
 """
@@ -48,13 +54,152 @@ def _challenger_handle(ch: dict) -> str:
     return ""
 
 
+RACE_STUCK_TIMEOUT_S = 20.0
+
+
+class TurnRaceGuard:
+    """Detects and recovers from the simultaneous-submit resolution race.
+
+    When both creatures POST their moves within a few milliseconds the
+    server can answer BOTH with the waiting-for-opponent shape and never
+    resolve the turn; after ~120s one side is forfeited arbitrarily. The
+    guard watches a submitted-but-unresolved turn and, once it has been
+    stuck past timeout_s, resubmits the identical move (idempotent: the
+    server answers 409 already_submitted if the original landed) or uses
+    the battle summary to detect that the battle actually resolved.
+
+    All methods take an optional now (monotonic seconds) for unit tests.
+    """
+
+    def __init__(self, client, handle: str,
+                 timeout_s: float = RACE_STUCK_TIMEOUT_S):
+        self.client = client
+        self.handle = handle
+        self.timeout_s = timeout_s
+        self._watch: Optional[dict] = None
+
+    def note_submitted(self, battle_id: str, turn, move: dict,
+                       response: dict, now: Optional[float] = None) -> None:
+        """Record a move submission; arms the watch unless the response
+        resolved the turn inline (turn_resolved true)."""
+        if response.get("turn_resolved"):
+            self._watch = None
+            return
+        self._watch = {
+            "battle_id": battle_id, "turn": turn, "move": dict(move),
+            "since": time.monotonic() if now is None else now,
+        }
+
+    def clear(self) -> None:
+        self._watch = None
+
+    def check(self, battle: dict, now: Optional[float] = None) -> bool:
+        """Inspect a fresh active_battle snapshot while waiting for turn
+        resolution. Returns True when the watched turn looks stuck (our
+        move was recorded but the turn has not advanced within timeout_s)
+        and recover() should run."""
+        w = self._watch
+        if not w:
+            return False
+        if battle.get("battle_id") != w["battle_id"]:
+            self._watch = None  # stale watch from another battle
+            return False
+        if battle.get("turn_number") != w["turn"] \
+                or battle.get("phase") == "resolved":
+            self._watch = None  # turn resolved normally
+            return False
+        recorded = bool(battle.get("you_submitted")) \
+            or battle.get("phase") == "waiting_opponent" \
+            or bool(battle.get("needs_move"))
+        if not recorded:
+            return False
+        now = time.monotonic() if now is None else now
+        if now - w["since"] < self.timeout_s:
+            return False
+        log.warning(
+            "[%s] turn resolution race detected: battle %s turn %s "
+            "unresolved for %.0fs (phase=%s you_submitted=%s "
+            "needs_move=%s), starting recovery",
+            self.handle, w["battle_id"], w["turn"], now - w["since"],
+            battle.get("phase"), battle.get("you_submitted"),
+            battle.get("needs_move"))
+        return True
+
+    def recover(self, now: Optional[float] = None) -> str:
+        """Run the recovery protocol after check() returned True.
+
+        Re-fetches /home; if the battle still needs a move for the SAME
+        turn, resubmits the identical move. Falls back to the battle
+        summary to detect that the battle actually resolved. Returns one
+        of: resubmitted, turn_advanced, battle_resolved, unresolved.
+        """
+        w = self._watch
+        if not w:
+            return "unresolved"
+        now = time.monotonic() if now is None else now
+        home = self.client.home()
+        battle = home.get("active_battle") or {}
+        if battle.get("battle_id") == w["battle_id"]:
+            if battle.get("turn_number") != w["turn"]:
+                log.info("[%s] race recovery: turn advanced to %s, no "
+                         "action needed", self.handle,
+                         battle.get("turn_number"))
+                self._watch = None
+                return "turn_advanced"
+            if battle.get("needs_move"):
+                move = w["move"]
+                log.warning(
+                    "[%s] race recovery: resubmitting identical move for "
+                    "battle %s turn %s (%s energy=%s)", self.handle,
+                    w["battle_id"], w["turn"], move["ability_id"],
+                    move["energy_spend"])
+                resp = {}
+                try:
+                    resp = self.client.move(
+                        w["battle_id"], move["ability_id"],
+                        move["energy_spend"], move.get("reasoning", ""))
+                except BattleClawsError as exc:
+                    if exc.status == 409:
+                        log.info("[%s] race recovery: 409, original move "
+                                 "stands", self.handle)
+                    else:
+                        log.error("[%s] race recovery resubmit failed: %s",
+                                  self.handle, exc)
+                if resp.get("turn_resolved"):
+                    self._watch = None
+                else:
+                    w["since"] = now  # rearm; retry if it sticks again
+                return "resubmitted"
+        # Battle gone from /home, or same turn but still waiting: check
+        # the summary as a fallback for a battle that actually resolved.
+        summary = {}
+        try:
+            summary = self.client.battle_summary(w["battle_id"])
+        except BattleClawsError as exc:
+            log.info("[%s] race recovery: summary probe failed: %s",
+                     self.handle, exc)
+        if summary.get("outcome"):
+            log.warning(
+                "[%s] race recovery: battle %s already resolved "
+                "(outcome=%s); /home will catch up", self.handle,
+                w["battle_id"], summary.get("outcome"))
+            self._watch = None
+            return "battle_resolved"
+        if battle.get("battle_id") != w["battle_id"]:
+            self._watch = None  # battle gone; nothing left to resubmit
+        else:
+            w["since"] = now  # rearm and keep watching
+        return "unresolved"
+
+
 class CreatureAgent:
     """Battle loop for one creature. Thread-safe status for orchestrators."""
 
     def __init__(self, arm_name: str, creature_cfg: CreatureConfig,
                  config: Config, client: BattleClawsClient, brain: Brain,
                  telemetry: Telemetry, mode: str = "selfplay",
-                 stop_event: Optional[threading.Event] = None):
+                 stop_event: Optional[threading.Event] = None,
+                 drain_event: Optional[threading.Event] = None):
         if mode not in ("selfplay", "organic"):
             raise ValueError(f"mode must be selfplay or organic, got {mode!r}")
         self.arm_name = arm_name
@@ -65,9 +210,14 @@ class CreatureAgent:
         self.telemetry = telemetry
         self.mode = mode
         self.stop_event = stop_event or threading.Event()
+        self.drain_event = drain_event or threading.Event()
+        self.drain_file = config.results_dir / "DRAIN"
         self.knowledge_text = creature_cfg.load_knowledge_text()
 
         self.state = "idle"
+        self._race_guard = TurnRaceGuard(client, self.handle)
+        self._drain_logged = False
+        self._drain_complete = False
         self.status: dict = {"state": "idle", "battle_id": None, "elo": None}
         self._battle_acc: dict = {}      # battle_id -> token/usd accumulators
         self._last_submitted: tuple = (None, None)  # (battle_id, turn)
@@ -107,6 +257,23 @@ class CreatureAgent:
                 "started_ts": time.time(), "elo_before": self.status.get("elo"),
             }
         return self._battle_acc[battle_id]
+
+    def _draining(self) -> bool:
+        """True when a drain was requested by signal or by the drain file.
+
+        Draining means: finish the current battle (keep submitting moves),
+        skip new challenges and requeue, then exit."""
+        if not self.drain_event.is_set() and self.drain_file.exists():
+            log.warning("[%s] drain file %s found, entering drain mode",
+                        self.handle, self.drain_file)
+            self.drain_event.set()
+        if not self.drain_event.is_set():
+            return False
+        if not self._drain_logged:
+            self._drain_logged = True
+            log.warning("[%s] draining: finishing current battle, skipping "
+                        "new challenges and requeue", self.handle)
+        return True
 
     # ---------------------------------------------------------- challenges
 
@@ -148,11 +315,16 @@ class CreatureAgent:
             if exc.status == 409:
                 log.info("[%s] move already submitted for turn %s", self.handle, turn)
                 self._last_submitted = (battle_id, turn)
+                self._race_guard.note_submitted(
+                    battle_id, turn, decision.as_move(),
+                    {"turn_resolved": False})
                 return
             log.error("[%s] move submission failed: %s", self.handle, exc)
             resp = {"error": str(exc)}
         wire_ms = (time.monotonic() - wire_started) * 1000.0
         self._last_submitted = (battle_id, turn)
+        self._race_guard.note_submitted(battle_id, turn, decision.as_move(),
+                                        resp)
 
         acc = self._acc(battle_id)
         acc["tokens_in"] += decision.input_tokens
@@ -258,12 +430,15 @@ class CreatureAgent:
             except Exception:
                 log.exception("[%s] unexpected error in loop", self.handle)
                 interval = self.config.poll_interval_idle_s
+            if self._drain_complete:
+                break
             self.stop_event.wait(interval)
         self._transition("stopped", "(shutdown)")
         log.info("[%s] agent stopped", self.handle)
 
     def _step(self) -> float:
         """One poll cycle. Returns the next poll interval in seconds."""
+        draining = self._draining()
         home = self.client.home()
         creature = home.get("creature") or {}
         self.status["elo"] = (creature.get("ranking") or {}).get("elo")
@@ -272,18 +447,24 @@ class CreatureAgent:
             log.debug("[%s] what_to_do_next: %s", self.handle,
                       next_actions[0].get("action"))
 
-        self._handle_challenges(home)
+        if not draining:
+            self._handle_challenges(home)
 
         battle = home.get("active_battle")
         if battle:
             self._transition("in_battle", f"battle {battle.get('battle_id')}")
             self.status["battle_id"] = battle.get("battle_id")
             self._acc(battle["battle_id"])  # ensure started_ts is set
-            if battle.get("needs_move"):
+            if self._race_guard.check(battle):
+                outcome = self._race_guard.recover()
+                log.info("[%s] race recovery outcome: %s", self.handle,
+                         outcome)
+            elif battle.get("needs_move"):
                 self._play_turn(battle)
             return self.config.poll_interval_battle_s
 
         self.status["battle_id"] = None
+        self._race_guard.clear()
         completed = home.get("last_completed_battle")
         if completed:
             self._finish_battle(completed, home)
@@ -296,6 +477,11 @@ class CreatureAgent:
             return self.config.poll_interval_idle_s
 
         self._transition("idle")
+        if draining:
+            log.warning("[%s] drain complete: idle with no active battle, "
+                        "agent exiting", self.handle)
+            self._drain_complete = True
+            return self.config.poll_interval_idle_s
         if self.mode == "organic":
             log.info("[%s] entering matchmaking queue", self.handle)
             try:
@@ -308,7 +494,8 @@ class CreatureAgent:
 
 def build_agent(arm_name: str, config: Config, telemetry: Telemetry,
                 mode: str, stop_event: threading.Event,
-                brain: Optional[Brain] = None) -> CreatureAgent:
+                brain: Optional[Brain] = None,
+                drain_event: Optional[threading.Event] = None) -> CreatureAgent:
     """Wire up client + brain + agent for one configured creature."""
     creature_cfg = config.creature(arm_name)
     api_key = creature_cfg.load_api_key()
@@ -324,7 +511,8 @@ def build_agent(arm_name: str, config: Config, telemetry: Telemetry,
                       max_tokens=config.max_tokens,
                       temperature=config.temperature)
     return CreatureAgent(arm_name, creature_cfg, config, client, brain,
-                         telemetry, mode=mode, stop_event=stop_event)
+                         telemetry, mode=mode, stop_event=stop_event,
+                         drain_event=drain_event)
 
 
 def main() -> int:
@@ -342,15 +530,23 @@ def main() -> int:
     telemetry = Telemetry(config.results_dir, config.budget_usd,
                           config.budget_warn_usd)
     stop_event = threading.Event()
+    drain_event = threading.Event()
 
     def _shutdown(signum, frame):
-        log.info("Signal %s received, shutting down gracefully", signum)
-        stop_event.set()
+        if not drain_event.is_set():
+            log.warning("Signal %s received: draining (current battle will "
+                        "finish; signal again to stop immediately)", signum)
+            drain_event.set()
+        else:
+            log.warning("Signal %s received again: stopping immediately",
+                        signum)
+            stop_event.set()
 
     signal.signal(signal.SIGINT, _shutdown)
     signal.signal(signal.SIGTERM, _shutdown)
 
-    agent = build_agent(args.creature, config, telemetry, args.mode, stop_event)
+    agent = build_agent(args.creature, config, telemetry, args.mode,
+                        stop_event, drain_event=drain_event)
     agent.run()
     return 0
 

@@ -22,7 +22,7 @@
     "paarthurnax": {
       "handle": "paarthurnax",
       "credentials_file": ".credentials/paarthurnax.json",
-      "knowledge_file": "knowledge/kl_v0_draft.md"
+      "knowledge_file": "knowledge/kl_v2.md"
     },
     "mirmulnir": {
       "handle": "mirmulnir",
