@@ -89,6 +89,7 @@ class Config:
     poll_interval_idle_s: float = 10.0
     inter_battle_delay_s: float = 60.0
     selfplay_battles: int = 100
+    allocate_skill_points: bool = False
     statement_template: str = (
         "Automated research agent (knowledge-layer experiment, battle "
         "{battle_number}). Result: {outcome} vs {opponent} in {turns} turns."
@@ -159,6 +160,7 @@ def load_config(path: Optional[str] = None) -> Config:
         poll_interval_idle_s=float(raw.get("poll_interval_idle_s", 10.0)),
         inter_battle_delay_s=float(raw.get("inter_battle_delay_s", 60.0)),
         selfplay_battles=int(raw.get("selfplay_battles", 100)),
+        allocate_skill_points=bool(raw.get("allocate_skill_points", False)),
         statement_template=raw.get("statement_template", Config.statement_template),
         challenge_policy=policy,
         creatures=creatures,

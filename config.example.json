@@ -12,6 +12,7 @@
   "poll_interval_idle_s": 10.0,
   "inter_battle_delay_s": 60.0,
   "selfplay_battles": 100,
+  "allocate_skill_points": false,
   "challenge_policy": {
     "auto_accept_from": ["paarthurnax", "mirmulnir", "alduin"],
     "default": "decline"

@@ -218,7 +218,16 @@ class CreatureAgent:
 
     def _maybe_allocate_points(self, home: dict) -> None:
         """Spend skill points with a fixed balanced spread so all arms stay
-        statistically identical."""
+        statistically identical.
+
+        Disabled unless config.allocate_skill_points is true: win/loss XP
+        asymmetry (500 vs 150) makes the winning arm level first, so any
+        allocation policy tied to leveling creates a stat snowball that
+        confounds the knowledge-layer comparison. Stats are frozen at
+        parity for the experiment; points accrue unspent.
+        """
+        if not getattr(self.config, "allocate_skill_points", False):
+            return
         stats = ((home.get("creature") or {}).get("stats") or {})
         points = stats.get("unspent_skill_points") or 0
         if points <= 0:
