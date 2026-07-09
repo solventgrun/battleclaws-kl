@@ -143,9 +143,26 @@ class BattleClawsClient:
 
     # ---------------------------------------------------------------- core
 
+    @classmethod
+    def _redact(cls, value: Any) -> Any:
+        """Recursively mask credential material before it reaches disk.
+
+        Wire logs are meant to be publishable telemetry; api_key and
+        similar fields must never appear in them (learned the hard way).
+        """
+        if isinstance(value, dict):
+            return {k: ("[REDACTED]"
+                        if k in ("api_key", "authorization", "token")
+                        else cls._redact(v))
+                    for k, v in value.items()}
+        if isinstance(value, list):
+            return [cls._redact(v) for v in value]
+        return value
+
     def _wire_log(self, record: dict) -> None:
         if self._wire_path is None:
             return
+        record = self._redact(record)
         with self._wire_lock:
             with self._wire_path.open("a", encoding="utf-8") as fh:
                 fh.write(json.dumps(record, ensure_ascii=False) + "\n")

@@ -87,8 +87,14 @@ analysis/compute_stats.py (adapted from tenancy-bench, pure stdlib).
 A battle is VALID unless it ends by infrastructure failure, defined
 mechanically as: (a) either agent's wire log shows the double
 waiting_opponent race signature without recovery, (b) either agent
-timed out a move (timed_out flag in server history), or (c) the server
-records a draw from mutual silence. Invalid battles are excluded from
+timed out a move (timed_out flag in server history), (c) the server
+records a draw from mutual silence, or (d) the server-side move history
+for either arm contains a move absent from that arm's wire log. Rule
+(d) is a tampering check: the creature API keys were briefly exposed in
+a public commit during Phase A (removed and history rewritten within
+minutes; the platform offers no key rotation), so arm integrity is
+verified per battle by reconciling our submitted-move logs against the
+server's record. Invalid battles are excluded from
 the primary test, fully logged, counted in section 10, and replaced by
 additional battles up to the attempt cap.
 
