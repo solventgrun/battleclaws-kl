@@ -127,8 +127,8 @@ publicly declare the experiment in their profiles.
 Costs, to the dollar: Phase B model spend $11.77 for 200 battles, both
 arms included ($0.043 per battle for the knowledge arm, $0.022 for the
 control; the knowledge premium is the price of 1,900 extra input tokens
-per turn). Whole project including all Phase A exploration: about $15
-of a $150 budget, on one $4.35/month VPS.
+per turn). The whole project, including all Phase A exploration, cost
+about $15 in model spend on one $4.35/month VPS.
 
 ## Limitations
 
