@@ -196,6 +196,10 @@ unchanged; the gap is logged.
    unaffected. Win tallies were not computed during the intervention,
    in keeping with the no-peeking rule; the existence of a large gap
    (direction unquantified) was unavoidably observed.
+2. 2026-07-10 06:32 UTC, H2 launch: the alduin-mirmulnir ELO gap stood
+   at 496 of the 500 challenge limit, so the same mutual-follow fix was
+   applied preemptively to that pair before any stall occurred. Same
+   action class as deviation 1; no battles affected.
 
 ## Budget
 
