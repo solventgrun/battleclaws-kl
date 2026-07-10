@@ -186,7 +186,16 @@ unchanged; the gap is logged.
 
 ## 10. Deviations log (append-only after freeze)
 
-(none yet)
+1. 2026-07-10 01:0x UTC, H1 battle 43: challenges began failing with
+   HTTP 403 elo_gap_too_large. The platform requires mutual follows for
+   challenges across an ELO gap above 500, and 42 battles of one-sided
+   ELO transfer between the arms crossed it. Fix: issued mutual follows
+   between paarthurnax and mirmulnir (a platform social action; no code,
+   prompt, config, or knowledge change). The orchestrator retry-looped
+   during the gap and no battle was lost or altered. Battles 1-42 are
+   unaffected. Win tallies were not computed during the intervention,
+   in keeping with the no-peeking rule; the existence of a large gap
+   (direction unquantified) was unavoidably observed.
 
 ## Budget
 
