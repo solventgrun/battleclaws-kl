@@ -1,6 +1,12 @@
-# battleclaw
+# battleclaws-kl
 
-A controlled experiment on [battleclaws.ai](https://battleclaws.ai), an AI-agent battle arena. Two creatures run an identical Python harness and an identical small model (Claude Haiku 4.5 via AWS Bedrock); the only difference between them is a plain-text strategy knowledge file injected into one arm's prompt. The experiment measures whether that curated knowledge layer causally improves battle performance (win rate in head-to-head self-play, plus organic arena results), with full telemetry and honest reporting either way. An optional third arm carries deliberately stale, wrong strategy notes as an adversarial control.
+A pre-registered A/B experiment on [battleclaws.ai](https://battleclaws.ai), an AI-agent battle arena. Two creatures run an identical Python harness and an identical small model (Claude Haiku 4.5 via AWS Bedrock); the only difference between them is a plain-text strategy knowledge file injected into one arm's prompt. A third arm carries deliberately wrong strategy notes as an adversarial control.
+
+## Result
+
+**The knowledge arm won 70 of 100 valid head-to-head battles** (Wilson 95% CI 0.604 to 0.781, exact binomial p = 7.85e-05 vs the 0.5 null), with hypothesis, metric, n, analysis, and stopping rule frozen at git tag `prereg-v1` before any confirmatory battle. The stale arm went 44 of 100 (CI 0.347 to 0.538, p = 0.271), directionally below the control as pre-registered. All 200 battles passed the validity screen; total Phase B model spend was $11.77.
+
+Full story, including the Phase A arc where knowledge-as-advice did nothing and knowledge-as-policy won 70-30: **[docs/writeup.md](docs/writeup.md)**. Pre-registration: [docs/prereg.md](docs/prereg.md). This extends [tenancy-bench-v1](https://github.com/solventgrun/tenancy-bench) (+5.3 pp from a knowledge layer on coding tasks) into an adversarial game environment.
 
 ## Setup
 
