@@ -1,0 +1,1799 @@
+{
+  "H1": {
+    "arm": "paarthurnax",
+    "exact_binomial_p": 7.85014e-05,
+    "losses": 30,
+    "n_valid": 100,
+    "wilson_95ci": [
+      0.60415,
+      0.781052
+    ],
+    "win_rate": 0.7,
+    "wins": 70
+  },
+  "H2": {
+    "arm": "alduin",
+    "exact_binomial_p": 0.2712530241,
+    "losses": 56,
+    "n_valid": 100,
+    "wilson_95ci": [
+      0.346719,
+      0.537721
+    ],
+    "win_rate": 0.44,
+    "wins": 44
+  },
+  "H3_adherence": {
+    "either_match": 761,
+    "either_match_rate": 0.709226,
+    "n_turns": 1073,
+    "reasoning_prefix_match": 530,
+    "reasoning_prefix_match_rate": 0.493942,
+    "strict_table_match": 464,
+    "strict_table_match_rate": 0.432432
+  },
+  "data_anomalies": [
+    "battle 074eae7a-3e33-4eb5-ae0e-4dec555692f1 (block H1, battle_number 18): 1 battles.jsonl record(s) instead of 2 (arms present: paarthurnax); treatment record present, used per prereg"
+  ],
+  "generated_by": "analysis/compute_stats.py",
+  "per_battle_validity": {
+    "00ad6ba8-e711-4140-a324-4cfb4625414d": {
+      "battle_number": 60,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "0178af27-cee5-4725-9754-7e9594c9076e": {
+      "battle_number": 89,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "02c4f3f0-0589-4fc1-aa31-16c51b73c3de": {
+      "battle_number": 93,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 10,
+      "valid": true
+    },
+    "068254e2-e88d-4d9a-9431-bc8422fb79eb": {
+      "battle_number": 72,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "06fedf1e-99a3-4cba-84b6-3db574d9d1f1": {
+      "battle_number": 81,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "074eae7a-3e33-4eb5-ae0e-4dec555692f1": {
+      "battle_number": 18,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "087a4858-bf98-41dd-b958-09dbb550b960": {
+      "battle_number": 18,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "0894f9e9-e64a-4e49-a291-7ebc2602d43a": {
+      "battle_number": 50,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "0c1c760d-92ba-4324-bfbd-aa48ef415caf": {
+      "battle_number": 6,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "0e11c347-371b-4682-92e9-2e4ecb3cb686": {
+      "battle_number": 51,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "0e91cd0e-607b-4794-a47a-fcbb687bebbc": {
+      "battle_number": 35,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "0fb15f70-0565-44f5-abd5-a097110ab9a6": {
+      "battle_number": 51,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "155b9c64-17b0-441c-a10d-69132b93288a": {
+      "battle_number": 64,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "1725c1c1-7f22-4590-96ca-af7ae2b8e58d": {
+      "battle_number": 36,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 18,
+      "valid": true
+    },
+    "17695e28-04d4-4da5-b35d-5e46f3816fc2": {
+      "battle_number": 34,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "177988ca-8ecb-4709-b976-433ad71c1800": {
+      "battle_number": 67,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 17,
+      "valid": true
+    },
+    "197a469e-4b05-4bfd-bfba-2edaf2c4aab3": {
+      "battle_number": 56,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 17,
+      "valid": true
+    },
+    "19f651e2-6f18-4ac2-8126-c40b9804386a": {
+      "battle_number": 49,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "1a20753c-2f5a-4834-93fa-5bacd1509514": {
+      "battle_number": 11,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "1a6c0d92-bd14-4d85-b3f4-d071a13b65bd": {
+      "battle_number": 11,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "1a83b88b-1fdc-43e1-96af-18cfd53d9775": {
+      "battle_number": 81,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 19,
+      "valid": true
+    },
+    "1c6a4029-894c-45cf-a6a6-156774b65ad7": {
+      "battle_number": 47,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "1ea78f95-883b-4c6d-8372-fcd2b9d57830": {
+      "battle_number": 74,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "20406691-f3f6-4a11-aea1-a03f2ef09c16": {
+      "battle_number": 71,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "2121bffd-e304-4bf0-a6fb-8d5ffdc96d3a": {
+      "battle_number": 86,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "22eae202-357b-44c8-94b2-4f7397747228": {
+      "battle_number": 70,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 9,
+      "valid": true
+    },
+    "251d107f-0f22-44e5-a094-6036376ae031": {
+      "battle_number": 82,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "2525b6a7-b6ec-4d94-a871-28d7828fa399": {
+      "battle_number": 29,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 11,
+      "valid": true
+    },
+    "26810b2a-8fda-49e7-8088-12971e598931": {
+      "battle_number": 24,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "268786db-5be2-42dc-aeb5-978f02db5a7f": {
+      "battle_number": 98,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "26f34f51-026f-4dd9-9eab-128544b1f3ef": {
+      "battle_number": 85,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "27d674e9-8a7f-41a7-be0f-7d0bdceda302": {
+      "battle_number": 25,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "2843618b-a1ca-46b8-85f4-73155099e360": {
+      "battle_number": 78,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "2b98f5f5-0cf3-4408-a295-926b5655714d": {
+      "battle_number": 80,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "2e68c60b-6672-4ccd-8444-e81a8362c72f": {
+      "battle_number": 12,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "2fb211a3-035c-4641-95e0-3ef3807305f2": {
+      "battle_number": 50,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "3022baf3-d859-423d-85b1-7f4c6b3bcf94": {
+      "battle_number": 30,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "304bf899-180d-4685-83fe-58e6b31647e0": {
+      "battle_number": 49,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "352d6736-2de4-4988-8648-be3685d9d4d9": {
+      "battle_number": 97,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "393b4a06-94f2-4945-852d-9175f58ed761": {
+      "battle_number": 8,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "39cec184-9bad-4db4-9628-94a9a0d48259": {
+      "battle_number": 100,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "3a36f49b-605e-4878-8464-3d9886d2476b": {
+      "battle_number": 59,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "3b4acdff-c8fa-4b38-9d77-a56d9782babf": {
+      "battle_number": 22,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "3c9dfcaa-37ec-445d-843e-5837dd661633": {
+      "battle_number": 79,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "3ce9793a-f6cd-44b4-827d-eb104aba06e6": {
+      "battle_number": 73,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "3d014587-276b-4658-9df3-72f952b7a078": {
+      "battle_number": 38,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 18,
+      "valid": true
+    },
+    "3f7d44a3-264d-4216-8f88-8ff86718ebd4": {
+      "battle_number": 16,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "40889278-73c1-4a96-b4cd-3fcbeef64f75": {
+      "battle_number": 46,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 17,
+      "valid": true
+    },
+    "4283bf64-6778-4275-aec0-f08c256cfd87": {
+      "battle_number": 56,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "42a28b8d-071d-4b3d-a717-540e8b6b2cc6": {
+      "battle_number": 31,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "430ccbf4-fb96-4d2b-8626-6b21dce8a6a3": {
+      "battle_number": 73,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "431ff0e7-bb86-4ac1-8bb3-6c31677c6bdf": {
+      "battle_number": 75,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "44e336ff-7eb8-4e2c-9a47-da98627e9de9": {
+      "battle_number": 46,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "45b6e9f0-2afa-48c8-be3a-b45c5e81d983": {
+      "battle_number": 92,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "460a236c-cc32-479e-931f-d9b8af463a62": {
+      "battle_number": 17,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "4626a455-7efa-4d66-99ff-88037f08b5fc": {
+      "battle_number": 25,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 10,
+      "valid": true
+    },
+    "46d122c7-cc9f-4602-8cf7-bd5a73b9ce8d": {
+      "battle_number": 10,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "4a56ec14-d41f-4a4c-86bb-163a77a7fd63": {
+      "battle_number": 2,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "4a873d72-4c71-4201-a39d-ad237e56ae52": {
+      "battle_number": 24,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "4ac1e8f4-9979-45ab-9e9b-c67417d59ab8": {
+      "battle_number": 57,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "4afaf869-1046-4251-b8b7-24bc1f19430f": {
+      "battle_number": 70,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 17,
+      "valid": true
+    },
+    "4b1833c9-b247-4e43-9245-c4dea8de9b47": {
+      "battle_number": 27,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "4b335154-156e-4cb2-9f16-f4d4d214a12b": {
+      "battle_number": 89,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "4bd54383-e728-4e63-be9f-c6baabb25fd8": {
+      "battle_number": 77,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "4c528f31-d4e3-4d21-b1f7-6eb9ed5dadcd": {
+      "battle_number": 9,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "4f4bf171-3b9a-4bbe-9aca-16e12d4a088c": {
+      "battle_number": 61,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "50f8dd99-47f2-40ab-9b00-02b115d303f8": {
+      "battle_number": 99,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "5100b041-95cc-465c-b76a-342d28347949": {
+      "battle_number": 31,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "51719c40-ebb4-4228-88e9-690bb1009ca5": {
+      "battle_number": 55,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "5173f970-4e8e-4367-8118-bd4f20fea0be": {
+      "battle_number": 27,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "550b7651-be42-4bef-8060-bc221b7c8188": {
+      "battle_number": 20,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "5514c05c-295e-41f5-9f42-e463c3245ce7": {
+      "battle_number": 58,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 9,
+      "valid": true
+    },
+    "552203f1-5aab-41fb-a577-9bd9e0716978": {
+      "battle_number": 78,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "57334052-d62c-4180-9139-a29c9ebcc683": {
+      "battle_number": 75,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "5752fd02-713f-4b38-a6db-2cf21b21db05": {
+      "battle_number": 41,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "599b99b7-d16e-45f5-9598-3975418c774b": {
+      "battle_number": 88,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 17,
+      "valid": true
+    },
+    "5c646dc0-0d64-4248-bb72-05f211a0fe82": {
+      "battle_number": 77,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "5f54495f-91cf-409a-b083-c55f0857d2a7": {
+      "battle_number": 43,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "632ad82b-a393-455f-bf8d-b8ab663f63e8": {
+      "battle_number": 96,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "6389d65c-691b-467c-9311-9f6deb3e01e9": {
+      "battle_number": 23,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "65a9568b-7032-4083-8735-7bbd3efe9d15": {
+      "battle_number": 97,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "6694b3d0-fc62-4c0e-a9ff-f46dff3e1f98": {
+      "battle_number": 90,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "66c113ee-3e65-4c3a-b10d-53adfbc860f2": {
+      "battle_number": 8,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 17,
+      "valid": true
+    },
+    "6a86d708-46c6-437a-bccc-f23d644bdf9c": {
+      "battle_number": 40,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "6af2642d-5706-43b9-9a96-129c9ffd69da": {
+      "battle_number": 45,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "6b563a3d-a73f-4204-905c-a98e97299252": {
+      "battle_number": 45,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "70cb1899-8b87-47c5-8039-ce602d2eb8b3": {
+      "battle_number": 60,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "71d337bc-e84b-450d-9286-034f4d63f6b4": {
+      "battle_number": 84,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "7330bcd3-7bf4-422d-9957-3aab9233919c": {
+      "battle_number": 12,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "73fede98-ceca-4a88-ad0e-111fb6f696a1": {
+      "battle_number": 82,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "774c68ae-e29f-43a8-88c4-7c157f3eebe5": {
+      "battle_number": 84,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 17,
+      "valid": true
+    },
+    "787e843e-2631-48ec-8779-dc7878ee0d33": {
+      "battle_number": 39,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "78c4abb6-f622-489a-bab0-19df3e07b3f5": {
+      "battle_number": 80,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "78da3e3c-9824-47e3-8dc3-b575849f0d60": {
+      "battle_number": 69,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "79170ffd-92f0-464f-9778-4e591e264a1b": {
+      "battle_number": 95,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "79b6f0d9-c275-48cb-9866-6b1ef8b7a25e": {
+      "battle_number": 1,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "79c3ebfd-2312-4c4b-9b84-1b61eaeff64b": {
+      "battle_number": 28,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "79eb2b79-6bde-41e7-a453-3bef996ee495": {
+      "battle_number": 62,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "79f8e6ef-61c3-4cd2-83bf-68f7165ac871": {
+      "battle_number": 33,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "7a277831-1bfd-4e46-99e0-def997be2b8c": {
+      "battle_number": 44,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "7ceee468-98ec-420e-b914-50ebebb9acf5": {
+      "battle_number": 32,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "7d68e11a-7cd0-499b-bbf4-00331f571cf7": {
+      "battle_number": 21,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 11,
+      "valid": true
+    },
+    "7e014983-cd56-4869-8b14-3de4fc25425c": {
+      "battle_number": 83,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 17,
+      "valid": true
+    },
+    "7e80715e-8d16-497d-b0c1-c113da0c2878": {
+      "battle_number": 22,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "80937352-d7e6-4e90-a0c6-4c6f2a74fc13": {
+      "battle_number": 47,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "80d2f926-7428-4fee-b382-ee24d9909d46": {
+      "battle_number": 63,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "817207fa-c5da-4288-ad08-b50b2667f0ad": {
+      "battle_number": 65,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "825c14ba-b8b0-4b60-bf70-97680266f193": {
+      "battle_number": 74,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "84845876-823f-4b9d-81b6-6722b5e13fea": {
+      "battle_number": 61,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "8634da91-ed7f-4a40-9a47-4febfcc4fed4": {
+      "battle_number": 32,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "877b0e71-1e93-44a2-a46c-20ccbd730048": {
+      "battle_number": 28,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "899729ed-80d8-4995-923e-c47591ca724e": {
+      "battle_number": 5,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "8a9d2117-76c8-4935-bcbe-11fd9ea0f74c": {
+      "battle_number": 53,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "8af6132c-60dc-417b-a73f-bc7d7b8076c8": {
+      "battle_number": 7,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "8ec03788-9a48-4866-af9a-5fecd5930914": {
+      "battle_number": 42,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "91252d55-8f51-4cf1-a5c6-1250a9d8336d": {
+      "battle_number": 64,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "93b45977-acda-4b8c-ba9c-531349f7b75f": {
+      "battle_number": 66,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "94b42059-7378-49a8-a47e-c58daa9e2491": {
+      "battle_number": 94,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "96eaf6ce-09ad-4880-ae2a-72d5d394b390": {
+      "battle_number": 95,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "973bcbf8-3bf8-4ec2-84e4-2b8d22cff73c": {
+      "battle_number": 53,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "983888d5-a00b-46c2-9f7c-17ac29280700": {
+      "battle_number": 83,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "9873307e-e79a-47d3-8e95-9f7f03a8178c": {
+      "battle_number": 85,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "99e15360-295f-4f28-87f8-ce5e2950a057": {
+      "battle_number": 14,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "9aa9e6a0-6a60-4ddd-84d7-c9682bd63cf5": {
+      "battle_number": 87,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "9b8a2d1f-e5a4-4cce-ab8c-c718ace2d64e": {
+      "battle_number": 36,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "9d8bf594-888c-4913-93f1-7a8e450c2621": {
+      "battle_number": 62,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "9e865b06-a64a-4ac9-b679-00e96b41bc81": {
+      "battle_number": 16,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "9f99be39-5ee5-4fbc-8aea-015aeceeffbf": {
+      "battle_number": 9,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "9fccb00d-56e3-4905-8cb1-1c530cb8d95a": {
+      "battle_number": 37,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "a0572712-f879-460d-bce0-39259914930a": {
+      "battle_number": 19,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "a4375cc4-ba02-4c76-9468-4c8becef0592": {
+      "battle_number": 6,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "a5ea1ac6-0929-47f5-8f1d-6c85971f8855": {
+      "battle_number": 65,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "a65b316c-d6e6-4205-a962-74cba25c83be": {
+      "battle_number": 38,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 8,
+      "valid": true
+    },
+    "a7366d7f-1431-404a-a674-db1493d7517f": {
+      "battle_number": 90,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "a7f30dfd-d2d8-43ae-9fe8-02ee7ce292a9": {
+      "battle_number": 58,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "a81e7542-7977-4277-abcf-351d714b855b": {
+      "battle_number": 44,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "ab90b8b2-17aa-4d18-91d4-da3dce96d7bc": {
+      "battle_number": 30,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "abb3a6f1-7e0c-4ee9-8172-17227a9ff01e": {
+      "battle_number": 52,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "adf5f1a8-a7bf-4bfd-b9f8-88d0a3cd3001": {
+      "battle_number": 67,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "aeb7c15e-d9f4-4cc1-bbd6-6d5442d7aedf": {
+      "battle_number": 40,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 17,
+      "valid": true
+    },
+    "aedf9b24-f892-4be7-869e-254726a43c48": {
+      "battle_number": 15,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "af418277-2e45-4d37-9852-e41c0792f481": {
+      "battle_number": 98,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 11,
+      "valid": true
+    },
+    "b4368a09-3f67-481b-a5cf-e2201b5695b9": {
+      "battle_number": 10,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 11,
+      "valid": true
+    },
+    "b4a91b07-1b84-46db-8edc-fae3c4e52fc5": {
+      "battle_number": 13,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "b4e61df2-92ff-442a-8129-e36bfb45f05d": {
+      "battle_number": 19,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 18,
+      "valid": true
+    },
+    "b61ea5a2-0756-4652-be77-1e5f034ea92c": {
+      "battle_number": 69,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "b73fb2ba-16f9-48b4-8e54-4adf6b0582c2": {
+      "battle_number": 59,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "b93d3628-e091-4733-93a5-2613640a9fbc": {
+      "battle_number": 41,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "b96c081e-db6f-449c-913d-c72f547909c4": {
+      "battle_number": 94,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "bb42e585-923e-4774-904b-c5b487f567ef": {
+      "battle_number": 29,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "bdf0efce-8aa9-4f8d-9e94-cef4339d22c2": {
+      "battle_number": 91,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 17,
+      "valid": true
+    },
+    "be21b9f2-4cea-43a1-b462-a4fb808994d5": {
+      "battle_number": 76,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "bed20aa1-31ff-46aa-ac9e-a0bf8778475f": {
+      "battle_number": 57,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "c0e4867e-ab29-4629-be08-1c4a9b602e8b": {
+      "battle_number": 39,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "c18fafe9-509c-43f5-be41-ed3fac7adec8": {
+      "battle_number": 54,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "c246eccb-d8b5-497c-8cde-925b0f1beda2": {
+      "battle_number": 99,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "c34bfdaf-7bdf-4ce0-a5bc-0ed11be1ea35": {
+      "battle_number": 76,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "c51adb75-6515-4447-9cfe-6a663e9ef443": {
+      "battle_number": 87,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "c6e7b931-59c0-417b-8a95-8da2610f9377": {
+      "battle_number": 13,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "c9e9c723-6c8e-416f-a013-b6bf5888b345": {
+      "battle_number": 4,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "ca1ac913-263f-4493-ac6c-53a68f0b32ce": {
+      "battle_number": 86,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "ca66e6cd-f510-4227-97a4-ed249568ff5d": {
+      "battle_number": 91,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "cadf38e7-1563-46b5-871f-b74615a550f9": {
+      "battle_number": 15,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 11,
+      "valid": true
+    },
+    "cdeecae5-1208-4beb-ba68-317d67906bbf": {
+      "battle_number": 92,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 17,
+      "valid": true
+    },
+    "cf784ceb-4016-49b0-bf7e-581e7d060513": {
+      "battle_number": 4,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "d0387fd0-b73a-4092-84f1-a08350919004": {
+      "battle_number": 7,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "d0468e95-cf18-49ce-b5ff-4735bb72e311": {
+      "battle_number": 54,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "d101851d-9446-4157-9940-187b9418baf1": {
+      "battle_number": 3,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "d33da8c1-3b25-4f52-b3f0-4862d94c8f54": {
+      "battle_number": 23,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "d35b28de-daf0-4906-b78d-d547ef1838e5": {
+      "battle_number": 17,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "d5060b32-2994-480a-959d-a01f171d6140": {
+      "battle_number": 55,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "d5aedd1f-2ea3-4c34-90c3-088f1b980fe4": {
+      "battle_number": 63,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "d73093cd-bc2e-474b-b4a3-539d280d987f": {
+      "battle_number": 43,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "d8f1e5e1-32c8-4b14-970e-616144e652b2": {
+      "battle_number": 88,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "dc86bb16-7e47-4aae-a9d1-d67eafdfd63c": {
+      "battle_number": 48,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 17,
+      "valid": true
+    },
+    "dfb3e0be-9a8d-4ebc-b309-c6732367eb3e": {
+      "battle_number": 37,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "e14d3d78-22f5-4bcb-849c-bf381e5a13f5": {
+      "battle_number": 93,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "e1e56486-6952-4ca3-857a-1b0c02ca6876": {
+      "battle_number": 20,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "e1e97020-8697-4282-8e0f-2c9879d680a3": {
+      "battle_number": 100,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "e260dd63-c234-4e0c-9287-a93eb8f0e333": {
+      "battle_number": 96,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 11,
+      "valid": true
+    },
+    "e26299fd-ef3d-44b0-ba93-808374fb0969": {
+      "battle_number": 68,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 14,
+      "valid": true
+    },
+    "e361c5d8-d888-43aa-812f-594e215d2299": {
+      "battle_number": 1,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "e3aac516-e0b1-453a-a80f-8334db28d779": {
+      "battle_number": 72,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 15,
+      "valid": true
+    },
+    "e53b5303-de67-4210-be6b-199becf66a0b": {
+      "battle_number": 42,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "e8ebf573-a6ee-4d95-99fe-0eede706dd01": {
+      "battle_number": 33,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "e9259c39-1f35-438e-a38e-528de82d49ab": {
+      "battle_number": 52,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 12,
+      "valid": true
+    },
+    "e991141e-5ccf-49aa-87e1-e2cb46aed974": {
+      "battle_number": 68,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 17,
+      "valid": true
+    },
+    "eac82396-c9a5-4084-84bb-d63d41e63cf9": {
+      "battle_number": 14,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 16,
+      "valid": true
+    },
+    "ebb76d45-d377-46df-80d0-964ab9c54781": {
+      "battle_number": 34,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 12,
+      "valid": true
+    },
+    "ec4d36a7-1bf8-48a7-98ae-1c7ab05e2f19": {
+      "battle_number": 26,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 13,
+      "valid": true
+    },
+    "ed149ed6-8a30-4504-87f8-675de2fdfe52": {
+      "battle_number": 79,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 10,
+      "valid": true
+    },
+    "efa686de-8024-4232-b673-1de47d8de6d0": {
+      "battle_number": 48,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    },
+    "f31ac706-d428-4279-a3c6-a71d07c5303b": {
+      "battle_number": 35,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "f4baa390-1534-4ab6-ae2d-88ae94c19e12": {
+      "battle_number": 5,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "f76f9b80-5641-4152-a978-8ceaa556a0fd": {
+      "battle_number": 71,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 16,
+      "valid": true
+    },
+    "faab8cb3-2413-41d8-b5f3-4213d6979ac4": {
+      "battle_number": 26,
+      "block": "H2",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "fbf1ecb6-a195-4dd6-9a59-c32d19b99db0": {
+      "battle_number": 2,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 13,
+      "valid": true
+    },
+    "fbfe9268-f19a-4c15-a07c-fd1071c678f1": {
+      "battle_number": 3,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 15,
+      "valid": true
+    },
+    "fde13fda-89d5-41b4-84fd-e7c00eb15f54": {
+      "battle_number": 66,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "loss",
+      "turns": 14,
+      "valid": true
+    },
+    "fee6b82b-9d62-4803-a443-db5e4f107b70": {
+      "battle_number": 21,
+      "block": "H1",
+      "reasons": [],
+      "treatment_outcome": "win",
+      "turns": 11,
+      "valid": true
+    }
+  },
+  "prereg": "docs/prereg.md (frozen 2026-07-09, tag prereg-v1)",
+  "secondaries": {
+    "energy_bet_distribution": {
+      "alduin": {
+        "counts": {
+          "0": 591,
+          "25": 830,
+          "50": 14
+        },
+        "n_turns": 1435,
+        "shares": {
+          "0": 0.411847,
+          "100": 0.0,
+          "25": 0.578397,
+          "50": 0.009756,
+          "75": 0.0
+        }
+      },
+      "mirmulnir": {
+        "counts": {
+          "0": 1126,
+          "25": 1532,
+          "50": 50
+        },
+        "n_turns": 2708,
+        "shares": {
+          "0": 0.415805,
+          "100": 0.0,
+          "25": 0.565731,
+          "50": 0.018464,
+          "75": 0.0
+        }
+      },
+      "paarthurnax": {
+        "counts": {
+          "0": 676,
+          "25": 428,
+          "50": 168,
+          "75": 1
+        },
+        "n_turns": 1273,
+        "shares": {
+          "0": 0.531029,
+          "100": 0.0,
+          "25": 0.336214,
+          "50": 0.131972,
+          "75": 0.000786
+        }
+      }
+    },
+    "fallback_move_count": {
+      "alduin": 0,
+      "mirmulnir": 0,
+      "paarthurnax": 0
+    },
+    "mean_turns_per_battle_H1": 12.73,
+    "mean_turns_per_battle_H2": 14.35,
+    "per_arm": {
+      "alduin": {
+        "battles_recorded": 100,
+        "elo_trajectory": {
+          "first_battle": {
+            "battle_number": 1,
+            "elo_after": 1209,
+            "elo_before": 1134
+          },
+          "last_battle": {
+            "battle_number": 100,
+            "elo_after": 1732,
+            "elo_before": 1745
+          }
+        },
+        "mean_turns_per_battle": 14.35,
+        "mean_usd_per_battle": 0.031081,
+        "total_tokens_in": 2359775,
+        "total_tokens_out": 149674,
+        "total_usd": 3.108145
+      },
+      "mirmulnir": {
+        "battles_recorded": 199,
+        "elo_trajectory": {
+          "first_battle": {
+            "battle_number": 1,
+            "elo_after": 1086,
+            "elo_before": 1036
+          },
+          "last_battle": {
+            "battle_number": 199,
+            "elo_after": 1949,
+            "elo_before": 1924
+          }
+        },
+        "mean_turns_per_battle": 13.5377,
+        "mean_usd_per_battle": 0.02164,
+        "total_tokens_in": 2945182,
+        "total_tokens_out": 272227,
+        "total_usd": 4.306317
+      },
+      "paarthurnax": {
+        "battles_recorded": 100,
+        "elo_trajectory": {
+          "first_battle": {
+            "battle_number": 1,
+            "elo_after": 1161,
+            "elo_before": 1194
+          },
+          "last_battle": {
+            "battle_number": 100,
+            "elo_after": 1839,
+            "elo_before": 1814
+          }
+        },
+        "mean_turns_per_battle": 12.73,
+        "mean_usd_per_battle": 0.043348,
+        "total_tokens_in": 3616854,
+        "total_tokens_out": 143597,
+        "total_usd": 4.334839
+      }
+    },
+    "race_recovery": {
+      "phaseB_h1.log": {
+        "race_detected_lines": 40,
+        "recovery_outcomes": {
+          "resubmitted": 20,
+          "turn_advanced": 1,
+          "unresolved": 19
+        }
+      },
+      "phaseB_h2.log": {
+        "race_detected_lines": 37,
+        "recovery_outcomes": {
+          "battle_resolved": 1,
+          "resubmitted": 18,
+          "turn_advanced": 4,
+          "unresolved": 14
+        }
+      }
+    }
+  },
+  "tampering_reconciliation": {
+    "mismatches": [],
+    "telemetry_turns_total": 5416,
+    "turns_with_server_side_record": 5416
+  },
+  "validity": {
+    "H1": {
+      "excluded": 0,
+      "excluded_battles": {},
+      "total_battles": 100,
+      "valid": 100
+    },
+    "H2": {
+      "excluded": 0,
+      "excluded_battles": {},
+      "total_battles": 100,
+      "valid": 100
+    }
+  }
+}
